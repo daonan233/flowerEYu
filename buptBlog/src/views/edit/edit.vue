@@ -1,8 +1,5 @@
 <template>
   <div>
-	  <!--在里面加这个背景 test-->
-	  <!--Particles id="tsparticles" class="login__particles" :options="particles" /-->
-	  <vue-particles color="#25de7c"></vue-particles>
     <naviBar />
     <div class="write-article">
       <transition name="fade" mode="out-in">
@@ -37,11 +34,9 @@
 </template>
 
 <script>
-import naviBar from "/src//components/naviBar.vue";
+import naviBar from "/src/components/naviBar.vue";
 import {chooseAndUploadAnImage} from "../../services/file.js";
 import {createArticle} from '../../services/edit.js';
-//import { particles } from '../../services/particles.js';
-
 
 export default {
   data(){
@@ -49,7 +44,7 @@ export default {
       showForm: true,
       title: "",
       image: null,
-	  imagePreview:null,
+      imagePreview:null,
       description: "",
       content: "",
     };
