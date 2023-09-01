@@ -1,9 +1,7 @@
 <template>
   <div>
-	  <!--在里面加这个背景 test-->
-	  <!--Particles id="tsparticles" class="login__particles" :options="particles" /-->
-	  <vue-particles color="#25de7c"></vue-particles>
     <naviBar />
+	  <FlyDan />
     <div class="write-article">
       <transition name="fade" mode="out-in">
         <div v-if="showForm" key="form">
@@ -37,58 +35,59 @@
 </template>
 
 <script>
-import naviBar from "/src//components/naviBar.vue";
-import {chooseAndUploadAnImage} from "../../services/file.js";
-import {createArticle} from '../../services/edit.js';
-//import { particles } from '../../services/particles.js';
-
+import naviBar from "/src/components/naviBar.vue";
+import { chooseAndUploadAnImage } from "../../services/file.js";
+import { createArticle } from "../../services/edit.js";
+import FlyDan from "/src/components/FlyDan.vue";
 
 export default {
-  data(){
+  data() {
     return {
       showForm: true,
       title: "",
       image: null,
-	  imagePreview:null,
+      imagePreview: null,
       description: "",
       content: "",
     };
   },
   components: {
     naviBar,
+    FlyDan,
+  },
+  computed: {
+    pageWidth() {
+      return window.innerWidth;
+    },
+    pageHeight() {
+      return window.innerHeight;
+    },
   },
   methods: {
-	  handleImageUpload(event) {
-	    const file = event.target.files[0];
-	    if (file) {
-	      this.image = file;
-		  this.imagePreview = URL.createObjectURL(file);
-	    }
-	  },
-	  /**
-	   * 上传封面图片
-	   * @returns {Promise<void>}
-	   */
-	  async uploadImage() {
-		  try{ 
-			  this.image = await chooseAndUploadAnImage();
-		  }catch(e){
-			  window.alert("上传图片失败！");
-		  }
-	    }
-	  },
-    submitArticle() {
-		try{
-		createArticle(this.title,this.description,this.image,this.content).then(() => {
-		     window.alert("你好");
-		  });
-		  this.showForm = false;
-		}catch(e){
-			window.alert("上传失败！请等等再试吧qwq");
-		}
-      
+    handleImageUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        this.image = file;
+        this.imagePreview = URL.createObjectURL(file);
+      }
     },
-    
+    async uploadImage() {
+      try {
+        this.image = await chooseAndUploadAnImage();
+      } catch (e) {
+        window.alert("上传图片失败！");
+      }
+    },
+    async submitArticle() {
+      try {
+        await createArticle(this.title, this.description, this.image, this.content);
+        this.showForm = false;
+        window.alert("文章发布成功！");
+      } catch (e) {
+        window.alert("上传失败！请稍后再试。");
+      }
+    },
+  },
 };
 </script>
 
@@ -98,7 +97,7 @@ export default {
   margin: 0 auto;
   margin-top: 14px;
   padding: 20px;
-  background-color: #f8f8f8;
+  background-color: transparent;
   border: 1px solid #ccc;
   border-radius: 8px;
   position: relative;
@@ -136,6 +135,7 @@ export default {
   border-radius: 4px;
   transition: border-color 0.3s;
   resize: none;
+  background-color: transparent;
 }
 
 .article-form input:focus,
@@ -145,6 +145,7 @@ export default {
 
 .article-form textarea {
   resize: none;
+  background-color: transparent;
 }
 
 .article-form button {
