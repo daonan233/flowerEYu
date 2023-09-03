@@ -36,7 +36,7 @@
 
 <script>
 import naviBar from "/src/components/naviBar.vue";
-import { chooseAndUploadAnImage } from "../../services/file.js";
+import { uploadFile} from "../../services/file.js";
 import { createArticle } from "../../services/edit.js";
 import FlyDan from "/src/components/FlyDan.vue";
 
@@ -73,7 +73,7 @@ export default {
     },
     async uploadImage() {
       try {
-        this.image = await chooseAndUploadAnImage();
+        this.image = await uploadFile();
       } catch (e) {
         window.alert("上传图片失败！");
       }
@@ -102,6 +102,20 @@ export default {
   border-radius: 8px;
   position: relative;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/* 应用淡入动画 */
+.write-article {
+    animation: fadeIn 1s ease-in-out;
+    animation-fill-mode: forwards;
 }
 
 .write-title img {
