@@ -1,39 +1,3 @@
-<template>
- <div class="navbar">
-    <div class="navbar-logo" @mouseover="rotateLogo" @mouseleave="resetLogo" >
-      <span class="logo-text">
-        <span class="rotate-animation" :class="{ hovered: hovered }">
-          <span class="rotate-placeholder"></span>
-          #<span class="rotate-text">Dao&nbsp;&nbsp;Nan</span>
-        </span>
-      </span>
-      <!--transition name="fade">
-        <div class="bottom-text" v-if="hovered">
-          我是55
-        </div>
-      </transition-->
-    </div>
-    <div class="navbar-menu" :class="{ 'no-hover': hovered }">
-      <li class="navbar-item" v-for="item in menuItems" :key="item.id" @mouseover="expandUnderline(item.id)" @mouseleave="resetUnderline(item.id)">
-        {{ item.name }}
-        <div class="underline" :class="{ expanded: item.expanded }"></div>
-      </li>
-    </div>
-    <div class="navbar-actions">
-      <div class="search-button">
-        <i class="icon-search">
-			<img src = "/src/assets/search.png" />
-		</i>
-      </div>
-      <div class="user-avatar">
-        <i class="icon-avatar">
-			<img src = "/src/assets/user.png" />
-		</i>
-      </div>
-    </div>
-  </div>
-</template>
-
 <script>
 import { ref } from 'vue';
 export default {
@@ -44,6 +8,7 @@ export default {
         { id: 1, name: '🏠主页', expanded: false },
         { id: 2, name: '📝编辑', expanded: false },
         { id: 3, name: '🎈友链', expanded: false },
+        { id: 4, name: '时间轴', expanded: false}
       ],
     };
   },
@@ -80,9 +45,40 @@ export default {
 };
 </script>
 
+<template>
+ <div class="navbar">
+    <div class="navbar-logo" @mouseover="rotateLogo" @mouseleave="resetLogo" >
+      <span class="logo-text">
+        <span class="rotate-animation" :class="{ hovered: hovered }">
+          <span class="rotate-placeholder"></span>
+          #&nbsp;<span class="rotate-text">bupterBlog</span>
+        </span>
+      </span>
+    </div>
+    <div class="navbar-menu" :class="{ 'no-hover': hovered }">
+      <li class="navbar-item" v-for="item in menuItems" :key="item.id" @mouseover="expandUnderline(item.id)" @mouseleave="resetUnderline(item.id)">
+        {{ item.name }}
+        <div class="underline" :class="{ expanded: item.expanded }"></div>
+      </li>
+    </div>
+    <div class="navbar-actions">
+      <div class="search-button">
+        <i class="icon-search">
+			<img src = "/src/assets/search.png" />
+		</i>
+      </div>
+      <div class="user-avatar">
+        <i class="icon-avatar">
+			<img src = "/src/assets/user.png" />
+		</i>
+      </div>
+    </div>
+  </div>
+</template>
+
+
+
 <style>
-
-
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -146,7 +142,7 @@ export default {
 }
 
 .rotate-animation.hovered {
-  color: #ffa11d;
+  color: #eb5895c4;
   transform: rotate(360deg);
 }
 
@@ -187,7 +183,7 @@ export default {
   bottom: -20px;
   width: 0;
   height: 5px;
-  background-color: #ffa11d;
+  background-color: #eb5895c4;
   transition: width 0.3s ease-in-out;
 }
 
@@ -246,6 +242,7 @@ export default {
 .hovered .bottom-text {
   opacity: 0;
 }
+
 /*淡入淡出*/
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s;

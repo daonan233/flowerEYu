@@ -1,65 +1,75 @@
 <script setup>
-//import '../../styles/js/common'
-import '../../styles/js/main'
-import Nav from './components/Nav.vue'
-import Header from './components/Header.vue'
-import PreArticle from './components/PreArticle.vue'
+import NavFixed from './components/NavFixed.vue'
+import Banner from './components/Banner.vue'
+import ShowArticles from './components/ShowArticles.vue'
 import Footer from './components/Footer.vue'
-
+import RightSideFixed from './components/RightSideFixed.vue'
 </script>
 
 <template>
-  <!-- 这是banner部分！！！ -->
-  <Header />
+  <!-- 侧边拉绳部分 -->
+  <RightSideFixed />
 
+  <!-- 导航nav部分 -->
+  <NavFixed />
 
-  <!-- 这是侧边的拉绳猫猫！！ -->
-  <a href="#" class="cd-top faa-float animated" style="top: -250px;"></a>
+  <!-- banner部分 -->
+  <Banner />
 
+  <!-- 展示文章区域 -->
+  <ShowArticles />
 
-  <!-- <div id="page" class="site wrapper"> -->
-    <!-- 导航nav部分 -->
-    <Nav/>
-    
-    <div id="content" class="site-content">
-      <div id="primary" class="content-area">
-
-        <!-- 文章部分 -->
-        <h1 class="main-title" style="font-family: 'Ubuntu', sans-serif;"><i class="iconfont icon-shujia"
-            aria-hidden="true"></i> 文章</h1>
-        <PreArticle />
-        <PreArticle />
-        <PreArticle />
-        <PreArticle />
-        <PreArticle />
-        <PreArticle />
-
-
-        <!-- 页码部分 -->
-        <div style="text-align: center;">
-          <div class="fn__clear">
-            <nav class="pagination fn__right">
-              <span class="pagination__item pagination__item--current">1</span>
-              <a class="pagination__item" href="https://demo.stackoverflow.wiki?p=2">2</a>
-              <a class="pagination__item" href="https://demo.stackoverflow.wiki?p=3">3</a>
-              <a class="pagination__item" href="https://demo.stackoverflow.wiki?p=4">4</a>
-            </nav>
-          </div>
-        </div>
-
-
-
-      </div>
-    </div>
-  <!-- </div> -->
-
-<!-- footer部分！ -->
-<Footer />
-
+  <!-- footer部分！ -->
+  <Footer />
 </template>
 
 <style>
 
 
+.site-content {
+  max-width: 800px;
+  padding: 0 10px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(255, 255, 255, .8)
+}
 
+/* 处理浮动元素引起的布局问题 */
+.site-content:before {
+  content: "";
+  display: table;
+  table-layout: fixed
+}
+
+.site-content:after {
+  clear: both;
+}
+
+/* “我的帖子“导航栏区域样式 */
+h1.fes-title,
+h1.main-title {
+  color: #666;
+  font-size: 16px;
+  font-weight: 400;
+  padding-left: 20px;
+  padding-right: 150px;
+  padding-bottom: 5px;
+  margin-bottom: 30px;
+  border-bottom: 1px dashed #ececec
+}
+
+/* 侧边挂饰掉落动画 */
+/* @keyframes dropAndFixAnimation {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.drop-and-fix {
+  animation: dropAndFixAnimation 2s ease-in-out forwards;
+} */
 </style>

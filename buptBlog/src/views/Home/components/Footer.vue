@@ -10,7 +10,7 @@
                 <div class="img-preload">
                     <img src="https://ftp.stackoverflow.wiki/bolo/moezx/cdn/img/Sakura/images/wordpress-rotating-ball-o.svg"><img src="https://ftp.stackoverflow.wiki/bolo/moezx/cdn/img/Sakura/images/disqus-preloader.svg">
                 </div>
-                <p class="foo-logo" style="background-image: url('https://ftp.stackoverflow.wiki/bolo/moezx/cdn/img/Sakura/images/sakura.svg');">
+                <p class="foo-logo" style="background-image: url(src/assets/footerIcon.jpeg);">
                 </p>
                 <p style="font-family: 'Ubuntu', sans-serif;">
                     <span style="color: #666666;">Crafted with <i class="fa fa-heart animated" style="color: #e74c3c;"></i> by <a rel="me" href="https://github.com/daonan233/flowerEYu" target="_blank" style="color: #000000;text-decoration:none;">网络摸鱼小队</a></span>
@@ -53,14 +53,19 @@
 
 .footertext .foo-logo {
     width: 30px;
-    height: 30px;
-    opacity: .3;
+    height: 40px;
+    opacity: .8;
     margin: 0 auto;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    animation: poi-deg 12s infinite linear;
-    -webkit-animation: poi-deg 12s infinite linear
+
+}
+
+.img-preload {
+	visibility: hidden;
+	width: 0;
+	height: 0
 }
 </style>
     
