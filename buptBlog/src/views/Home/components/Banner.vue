@@ -373,17 +373,6 @@ const scrollToElement = () => {
 	height: 100%
 }
 
-
-/* 禁止用户选中 banner 中的文本内容 */
-.no-select {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none
-}
-
 /* 波浪样式 */
 #banner_wave_1 {
     width: auto;

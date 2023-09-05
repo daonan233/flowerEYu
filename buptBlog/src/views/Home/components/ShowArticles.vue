@@ -112,7 +112,7 @@ onMounted(() => {
     <div id="content" class="site-content">
         <div id="primary" class="content-area">
             <!-- 文章部分 -->
-            <h1 id="scroll-element" class="main-title" style="font-family: 'Ubuntu', sans-serif;"><i
+            <h1 id="scroll-element" class="main-title no-select" style="font-family: 'Ubuntu', sans-serif;"><i
                     class="iconfont icon-shujia" aria-hidden="true"></i> 我的帖子</h1>
 
             <!-- 展示的数据 -->

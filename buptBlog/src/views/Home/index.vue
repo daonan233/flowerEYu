@@ -1,9 +1,9 @@
 <script setup>
-import NavFixed from './components/NavFixed.vue'
+import NavFixed from '../../components/NavFixed.vue'
 import Banner from './components/Banner.vue'
 import ShowArticles from './components/ShowArticles.vue'
-import Footer from './components/Footer.vue'
-import RightSideFixed from './components/RightSideFixed.vue'
+import Footer from '../../components/Footer.vue'
+import RightSideFixed from '../../components/RightSideFixed.vue'
 </script>
 
 <template>

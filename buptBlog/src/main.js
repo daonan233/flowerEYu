@@ -1,7 +1,5 @@
 // 引入css样式
-// import './styles/base.css'
-// import './styles/style.css'
-import './styles/test.css'
+import './styles/style.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

@@ -1,15 +1,16 @@
 <script setup>
-import { useScroll } from "@vueuse/core";
-import SideBar from './SideBar.vue';
+import SideBar from '../views/Home/components/SideBar.vue';
+import Search from './Search.vue'
 import { ref } from 'vue';
-
-const { y } = useScroll(window)
+import { useMenuStore } from '../stores/menu.js'
 
 // 用户信息
 const userInfo = ref({
 	name: 'gene',
     id: 112233,
 })
+
+const menuStore = useMenuStore()
 
 // 控制是否显示侧边栏的布尔值
 const showSideBar = ref(false)
@@ -18,7 +19,6 @@ const logoClicked = () => {
     // 展示侧边框
     showSideBar.value = !showSideBar.value
 }
-
 
 // 控制搜索组件是否弹出的布尔值
 const searchClicked = ref(false)
@@ -61,10 +61,10 @@ const quit = () => {
 
 <template>
     <!-- 侧边栏只有在logo被点击时才显示 -->
-    <SideBar v-if="showSideBar" :userInfo="userInfo"/>
+    <SideBar v-if="showSideBar" :userInfo="userInfo" />
 
     <!-- 搜索框只有在搜索icon点击时才显示 -->
-    <!-- <el-alert v-if="searchClicked" title="success alert" type="success" /> -->
+    <Search v-if="searchClicked" />
 
     <!-- nav部分 -->
     <header class="site-header no-select" role="banner">
@@ -79,11 +79,11 @@ const quit = () => {
                     <nav>
                         <!-- <ul id="menu-new" class="menu"> -->
                         <ul id="menu-new" class="navMenu">
-                            <li><a href=""><span class="faa-parent animated-hover"><i class="iconfont icon-shouye-zhihui"
+                            <li @click="menuStore.mainPageClicked"><a @click="$router.push('/')"><span :class="{ active: menuStore.isMainPageActive }"><i class="iconfont icon-shouye-zhihui"
                                             aria-hidden="true"></i> 首页</span></a></li>
-                            <li><a href="这里是友链的超链接"><span class="faa-parent animated-hover"><i class="iconfont icon-at"
+                            <li @click="menuStore.friendsLinkClicked"><a @click="$router.push('/friendslink')"><span :class="{ active: menuStore.isFriendsActive }"><i class="iconfont icon-at"
                                             aria-hidden="true"></i> 友链</span></a></li>
-                            <li><a href="这里是时间线的超链接"><span class="faa-parent animated-hover"><i
+                            <li @click="menuStore.editClicked"><a @click="$router.push('/edit')"><span :class="{ active: menuStore.isEditActive }"><i
                                             class="iconfont icon-icon1" aria-hidden="true"></i> 编辑</span></a></li>
                         </ul>
                     </nav>
@@ -96,13 +96,6 @@ const quit = () => {
                 </div>
 
                 <div class="header-user-avatar" @click="showMenu">
-                    <!-- <a href="https://demo.stackoverflow.wiki/start" @click="showClick"><img class="faa-shake animated-hover"
-                        src="https://ftp.stackoverflow.wiki/bolo/moezx/cdn/img/Sakura/images/none.png" width="30"
-                        height="30"></a> -->
-                    <!-- <span @click="showClick()"><img class="faa-shake animated-hover"
-                        src="https://ftp.stackoverflow.wiki/bolo/moezx/cdn/img/Sakura/images/none.png" width="30"                        
-                        height="30"></span> -->
-
                     <!-- 用户icon -->
                     <span class="userIcon"><img src="src/assets/user.png" width="30" height="30"></span>
                     <div class="header-user-menu">
@@ -128,14 +121,14 @@ const quit = () => {
 </template>
 
 <style scoped>
-.no-select {
+/* .no-select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-}
+} */
 
 /* 导航栏样式 */
 .site-header {
@@ -351,6 +344,10 @@ const quit = () => {
     color: #5a3746c4;
 }
 
+.active {
+    color: rgb(66, 185, 131);
+}
+
 /* 去除菜单的超链接上的下划线样式 */
 /* a {
 	text-decoration: none;
@@ -465,14 +462,6 @@ const quit = () => {
     }
 
 }
-
-/* nav移除平移 + 完全不透明 */
-.show {
-    transition: all 0.3s linear;
-    transform: none;
-    opacity: 1;
-}
-
 
 /* '#'标志旋转动画 */
 @keyframes rotateAnimation {
