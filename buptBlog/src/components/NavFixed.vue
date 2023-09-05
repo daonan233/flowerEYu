@@ -81,7 +81,7 @@ const quit = () => {
                         <ul id="menu-new" class="navMenu">
                             <li @click="menuStore.mainPageClicked"><a @click="$router.push('/')"><span :class="{ active: menuStore.isMainPageActive }"><i class="iconfont icon-shouye-zhihui"
                                             aria-hidden="true"></i> 首页</span></a></li>
-                            <li @click="menuStore.friendsLinkClicked"><a @click="$router.push('/friendslink')"><span :class="{ active: menuStore.isFriendsActive }"><i class="iconfont icon-at"
+                            <li @click="menuStore.friendsLinkClicked"><a @click="$router.push('/detail')"><span :class="{ active: menuStore.isFriendsActive }"><i class="iconfont icon-at"
                                             aria-hidden="true"></i> 友链</span></a></li>
                             <li @click="menuStore.editClicked"><a @click="$router.push('/edit')"><span :class="{ active: menuStore.isEditActive }"><i
                                             class="iconfont icon-icon1" aria-hidden="true"></i> 编辑</span></a></li>
@@ -334,6 +334,7 @@ const quit = () => {
     display: block;
     position: relative;
     z-index: 11;
+	cursor: pointer;
 }
 
 .navMenu li {

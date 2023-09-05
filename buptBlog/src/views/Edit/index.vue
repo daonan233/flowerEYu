@@ -178,7 +178,7 @@ export default {
   margin-left:5%;
   margin-top: 20px;
   padding: 12px;
-  background-color: #ffa11d;
+  background-color: rgb(66, 185, 131);
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -187,7 +187,7 @@ export default {
 }
 
 .article-form button:hover {
-  background-color: #ff8c00;
+  background-color: rgb(51, 143, 100);
 }
 
 .write-message {

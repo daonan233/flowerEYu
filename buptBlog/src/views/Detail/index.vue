@@ -2,10 +2,11 @@
   <div class ="all">
     <NavFixed></NavFixed>
 	<videos></videos>
+	<RightSideBar></RightSideBar>
     <div class="background">
       <div class="background-image">
 		 <p class = "title">{{this.title}}</p>
-		 <div class= "short-cut-grid">
+		 <div>
 		    <p class = "short-cut">点赞量： {{this.likes}}</p>
 		    <p class = "short-cut1">浏览量： {{this.views}}</p>
 		    <p class = "short-cut2">发布时间：{{formattedTime}}</p>
@@ -24,6 +25,7 @@
 	         >
 	      <img src="/src/assets/zan.png" alt="点赞按钮" />
 	    </button>
+		<div class = "afterZan">
 	    <transition name="image-transition" mode="out-in">
 	      <img v-if="likeShow" 
 		  :src="this.liked?'/src/assets/flowerDan.png':''" 
@@ -34,13 +36,14 @@
 		:src="!this.liked?'/src/assets/cryDan.png':''" 
 		class="reaction-image"/>
 		</transition>
+		</div>
 	  </div>
 	  
 	  <div class ="textContainer">
 	  	<p class = "descriptionStyle">{{this.description}}</p>
-	  	<p class ="divider">____________________________________________________________________________________________________________________________________________</p>
+	  	<p class ="divider">______________________________________________________________________________________________________________________________________________</p>
 		<p class="contentStyle">{{this.content}}</p>
-		<p class ="divider">____________________________________________________________________________________________________________________________________________</p>
+		<p class ="divider">______________________________________________________________________________________________________________________________________________</p>
 	  </div> 
 	  <Footer/>
   </div>
@@ -55,6 +58,7 @@ import dayjs from 'dayjs';
 import Element from "element-plus";
 import Footer from '/src/components/Footer.vue';
 import videos from '/src/components/video.vue';
+import RightSideBar from "/src//components/RightSideFixed.vue";
 
 
 export default {
@@ -77,6 +81,7 @@ export default {
 	videos,
     NavFixed,
 	Footer,
+	RightSideBar,
   },
   
   computed:{
@@ -142,9 +147,10 @@ export default {
 }
 
 .background {
-  position: absolute;
+  position: relative;
+  margin-top:75px;
   width: 100vw;  
-  height: 400px; /* 控制背景图片容器的高度为200px */
+  height: 400px; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -235,15 +241,10 @@ export default {
 	letter-spacing: 3px;
 	
 }
-.short-cut-grid{
-    display: grid;
-    grid-template-columns: 1fr; 
-    grid-gap: 10px; /* 间距 */
-  }
+
 
 
 .backgroundStyle {
-  margin-top: 14px ;	
   position: absolute;
   width: 100%;
   height: auto; 
@@ -254,10 +255,11 @@ export default {
 
 /*点赞效果css*/
 .like-button {
-  position: absolute;
-  right: 1vw; /* 页面右侧 90% ��*/
-  bottom: 15%; /* 页面底部 80% ��*/
-  background-color: #fcae41;
+  z-index:999;
+  position: fixed;
+  right: 2vw; /* 页面右侧 80% ��*/
+  bottom: 15%; /* 页面底部 85% ��*/
+  background-color: rgb(66, 185, 131);
   border: none;
   cursor: pointer;
   outline: none;
@@ -272,15 +274,16 @@ export default {
 
 .like-button:hover {
   transform: scale(1.2);
-  background-color: #e1993a;
+  background-color: rgb(66, 185, 131);
   transition: 0.3s;
 }
 
 /* 点赞效果样式 */
 .like-button-container {
-  position: fixed;
-  right: 10%;
+  position: absolute;
+  right: 20%;
   top: 80%;
+  z-index:999;
 }
 
 .like-button {
@@ -306,11 +309,11 @@ export default {
 
 /* 应用动画��.reaction-image 元素 */
 .reaction-image {
-  position: absolute;
+  position: fixed;
   right: 50%;
-  bottom: -50%; /* 初始位置在底部之��*/
+  bottom: -50%; 
   transform: translateX(50%);
-  z-index: 1;
+  z-index: 99999;
   user-select: none;
   animation: slideInFromBottom 0.5s ease forwards; /* 应用动画 */
 }
@@ -327,19 +330,19 @@ export default {
 /*点赞后按钮的样式*/
 /* 橙色按钮样式 */
 .orange-button {
-  background-color: #fcae41;
+  background-color: rgb(66, 185, 131);
   /* 其他样式属��，根据��要添��*/
 }
 
 .orange-button:hover {
-  background-color: #e1993a;
+  background-color: rgb(56, 157, 110);
   /* 其他样式属��，根据��要添��*/
 }
 
 /*简介的样式*/
 .textContainer{
   width: 70%; /* 控制主体内容的宽度 */
-  margin-top: 416px;
+  margin-top: 0px;
   margin-left:15%;
   padding: 20px; /* 可选，添加内边距 */
   box-sizing: border-box; /* 可选，确保宽度包括内边距和边框 */
@@ -356,9 +359,6 @@ export default {
   
 }
 
-.contentStyle :before{
-	 content: "\00A0\00A0"; /* 在每行前添加两个空格 */
-}
 /* 示例样式：文章内容 */
 .contentStyle{
   white-space: pre-line;
@@ -366,7 +366,7 @@ export default {
   line-height: 2.5; /* 增加行高，提高可读性 */
   color: #444; /* 修改文章内容文字颜色 */
   text-align: justify; /* 文本两端对齐 */
-  margin-left: 10%;
+  margin-left: 8%;
   margin-bottom: 30px; /* 添加底部边距 */
   letter-spacing: 2px;
   color:#636363;
@@ -376,5 +376,10 @@ export default {
 	color: #c1c1c1;
 }
 
+.afterZan{
+	position: absolute;
+	
+	z-index: 9999;
+}
 
 </style>

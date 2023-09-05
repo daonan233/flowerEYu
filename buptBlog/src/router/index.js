@@ -27,7 +27,12 @@ const router = createRouter({
       path: '/friendslink',
       name: 'friendslink',
       component: FriendsLink
-    }
+    },
+	{
+	  path: '/detail',
+	  name: 'detail',
+	  component: Detail
+	}
         
   ],
   // 路由滚动行为定制
