@@ -1,7 +1,10 @@
 <template>
   <div>
-    <naviBar />
+    <NavFixed/>
 	  <FlyDan />
+	  <videos/>
+	  <RightSideFixed/>
+	  
     <div class="write-article">
       <transition name="fade" mode="out-in">
         <div v-if="showForm" key="form">
@@ -31,14 +34,18 @@
         </div>
       </transition>
     </div>
+	<Footer/>
   </div>
 </template>
 
 <script>
-import naviBar from "/src/components/naviBar.vue";
+import NavFixed from "/src/components/NavFixed.vue";
 import { uploadFile} from "../../services/file.js";
 import { createArticle } from "../../services/edit.js";
 import FlyDan from "/src/components/FlyDan.vue";
+import Footer from "/src/components/Footer.vue";
+import videos from "/src/components/video.vue";
+import RightSideFixed from "/src/components/RightSideFixed.vue";
 
 export default {
   data() {
@@ -52,8 +59,11 @@ export default {
     };
   },
   components: {
-    naviBar,
+    NavFixed,
     FlyDan,
+	Footer,
+	videos,
+	RightSideFixed,
   },
   computed: {
     pageWidth() {
@@ -95,7 +105,7 @@ export default {
 .write-article {
   max-width: 800px;
   margin: 0 auto;
-  margin-top: 14px;
+  margin-top: 100px;
   padding: 20px;
   background-color: transparent;
   border: 1px solid #ccc;

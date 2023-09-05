@@ -57,9 +57,11 @@ export default {
 		},
       ],
       info: {
+		  
+		autoplay:false,//关闭自动播放
         fixed: true, // 不开启吸底模式
         listFolded: true, // 折叠歌曲列表
-        autoplay: true, // 开启自动播放
+		mode:"random",
         preload: "auto", // 自动预加载歌曲
         loop: "all", // 播放循环模式、all全部循环 one单曲循环 none只播放一次
         order: "list", //  播放模式，list列表播放, random随机播放

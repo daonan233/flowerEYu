@@ -10,6 +10,7 @@
   "dependencies": {
     "@vueuse/core": "^10.4.1",
     "ant-design-vue": "^4.0.0-rc.6",
+    "aplayer": "^1.10.1",
     "axios": "^1.5.0",
     "dayjs": "^1.11.9",
     "element-plus": "^2.3.12",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.3.1",
+    "less": "^4.2.0",
     "unplugin-auto-import": "^0.16.6",
     "unplugin-vue-components": "^0.25.1",
     "vite": "^4.4.9"

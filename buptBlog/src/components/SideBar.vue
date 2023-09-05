@@ -1,3 +1,13 @@
+<template>
+    <div class="sidebar" :class="{ 'fade-in': userInfo.name }">
+        <a href="可以跳转到个人主页"><el-avatar class="myAvatar" :size="150" src="src/assets/background.png" /></a>
+        <div class="user-info">
+            <h2> {{ userInfo.name }}</h2>
+            <p>ID:&nbsp;{{ userInfo.id }}</p>
+        </div>
+    </div>
+</template>
+
 <script lang="ts" setup>
 defineProps({
     userInfo: {
@@ -8,18 +18,6 @@ defineProps({
 })
 </script>
 
-<template>
-    <div class="sidebar">
-        <a href="可以跳转到个人主页"><el-avatar class="myAvatar" :size="150" src="src/assets/background.png" /></a>
-        <div class="user-info">
-            <h2> {{ userInfo.name }}</h2>
-            <p>ID:&nbsp;{{ userInfo.id }}</p>
-        </div>
-        
-                    
-    </div>
-</template>
-
 <style>
 /* 头像样式 */
 .myAvatar {
@@ -27,6 +25,8 @@ defineProps({
     display: flex;
     margin: auto;
     margin-top: 100px;
+    opacity: 0; /* 初始设置透明度为 0 */
+    transition: opacity 0.5s ease-in-out; /* 添加过渡效果 */
 }
 
 /* 侧边栏显示样式 */
@@ -44,12 +44,17 @@ defineProps({
     background-color: rgb(176, 173, 173);
     text-align: center;
     /* color: #fff; */
+    opacity: 0; /* 初始设置透明度为 0 */
+    transition: opacity 0.5s ease-in-out; /* 添加过渡效果 */
 }
 
 .user-info {
-    color:aliceblue;
+    color: aliceblue;
     font-size: 16px;
 }
-</style>
 
-  
+/* 淡入效果的类 */
+.fade-in {
+    opacity: 1;
+}
+</style>
